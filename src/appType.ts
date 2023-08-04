@@ -7,5 +7,5 @@ export type TodoType = {
 };
 
 export type PropsType = {
-  todos: React.Dispatch<React.SetStateAction<TodoType[]>>;
+  todos?: React.Dispatch<React.SetStateAction<TodoType[]>>;
 };

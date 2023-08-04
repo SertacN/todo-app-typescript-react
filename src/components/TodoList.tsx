@@ -1,23 +1,19 @@
 import { TodoType } from "../appType";
-function TodoList({
-  todo,
-  todoDelete,
-}: {
-  todo: TodoType[];
-  todoDelete: (id: number, event: React.MouseEvent<HTMLButtonElement>) => void;
-}) {
+import { TodoContext } from "../context/TodoContext";
+import { useContext } from "react";
+function TodoList() {
+  const { todoItem, todoDelete } = useContext(TodoContext);
   return (
-    <div>
-      {todo.map((item: TodoType) => {
+    <div className="todoListContainer">
+      {todoItem.map((item: TodoType) => {
         return (
-          <div key={item.id}>
+          <div key={item.id} className="todosContainer">
+            <h4>Your Task</h4>
             <h3>{item.taskName}</h3>
             <p>
               Will be completed in <span>{item.doneTime}</span> Hours
             </p>
-            <button onClick={(event) => todoDelete(item.id, event)}>
-              Delete
-            </button>
+            <button onClick={() => todoDelete(item.id)}>Delete</button>
           </div>
         );
       })}
